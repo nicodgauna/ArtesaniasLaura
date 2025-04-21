@@ -35,26 +35,6 @@
                     </li>
                     <li><a href="quienes-somos.html">Quiénes Somos</a></li>
                     <li><a href="contacto.html">Contacto</a></li>
-                    <li class="cart-icon">
-                        <a href="#" id="cart-toggle">
-                            <i class="fas fa-shopping-cart"></i>
-                            <span class="cart-count">0</span>
-                        </a>
-                        <!-- Resumen del carrito -->
-                        <div class="cart-dropdown">
-                            <h3>Carrito de Compras</h3>
-                            <div class="cart-items">
-                                <!-- Los items del carrito se cargarán dinámicamente con JavaScript -->
-                            </div>
-                            <div class="cart-total">
-                                <p>Total: <span>$0.00</span></p>
-                            </div>
-                            <div class="cart-buttons">
-                                <a href="carrito.html" class="btn">Ver Carrito</a>
-                                <a href="checkout.html" class="btn btn-primary">Terminar Compra</a>
-                            </div>
-                        </div>
-                    </li>
                 </ul>
             </nav>
         </div>
@@ -82,7 +62,7 @@
                 <div class="product-slider">
                     <div class="product-slider-track">
                         <!-- Producto 1 -->
-                        <div class="product-card" data-id="1" data-name="Producto 1" data-price="29.99">
+                        <div class="product-card">
                             <div class="product-image">
                                 <img src="https://via.placeholder.com/300" alt="Producto 1">
                             </div>
@@ -90,12 +70,11 @@
                                 <h3>Producto 1</h3>
                                 <p>Descripción del producto 1. Este es un producto de alta calidad.</p>
                                 <div class="product-price">$29.99</div>
-                                <button class="btn add-to-cart">Añadir al Carrito</button>
                             </div>
                         </div>
 
                         <!-- Producto 2 -->
-                        <div class="product-card" data-id="2" data-name="Producto 2" data-price="39.99">
+                        <div class="product-card">
                             <div class="product-image">
                                 <img src="https://via.placeholder.com/300" alt="Producto 2">
                             </div>
@@ -103,12 +82,11 @@
                                 <h3>Producto 2</h3>
                                 <p>Descripción del producto 2. Perfecto para cualquier ocasión.</p>
                                 <div class="product-price">$39.99</div>
-                                <button class="btn add-to-cart">Añadir al Carrito</button>
                             </div>
                         </div>
 
                         <!-- Producto 3 -->
-                        <div class="product-card" data-id="3" data-name="Producto 3" data-price="49.99">
+                        <div class="product-card">
                             <div class="product-image">
                                 <img src="https://via.placeholder.com/300" alt="Producto 3">
                             </div>
@@ -116,12 +94,11 @@
                                 <h3>Producto 3</h3>
                                 <p>Descripción del producto 3. Diseño moderno y funcional.</p>
                                 <div class="product-price">$49.99</div>
-                                <button class="btn add-to-cart">Añadir al Carrito</button>
                             </div>
                         </div>
 
                         <!-- Producto 4 -->
-                        <div class="product-card" data-id="4" data-name="Producto 4" data-price="19.99">
+                        <div class="product-card">
                             <div class="product-image">
                                 <img src="https://via.placeholder.com/300" alt="Producto 4">
                             </div>
@@ -129,12 +106,11 @@
                                 <h3>Producto 4</h3>
                                 <p>Descripción del producto 4. La mejor relación calidad-precio.</p>
                                 <div class="product-price">$19.99</div>
-                                <button class="btn add-to-cart">Añadir al Carrito</button>
                             </div>
                         </div>
 
                         <!-- Producto 5 -->
-                        <div class="product-card" data-id="5" data-name="Producto 5" data-price="59.99">
+                        <div class="product-card">
                             <div class="product-image">
                                 <img src="https://via.placeholder.com/300" alt="Producto 5">
                             </div>
@@ -142,12 +118,11 @@
                                 <h3>Producto 5</h3>
                                 <p>Descripción del producto 5. Innovador y práctico.</p>
                                 <div class="product-price">$59.99</div>
-                                <button class="btn add-to-cart">Añadir al Carrito</button>
                             </div>
                         </div>
 
                         <!-- Producto 6 -->
-                        <div class="product-card" data-id="6" data-name="Producto 6" data-price="69.99">
+                        <div class="product-card">
                             <div class="product-image">
                                 <img src="https://via.placeholder.com/300" alt="Producto 6">
                             </div>
@@ -155,12 +130,11 @@
                                 <h3>Producto 6</h3>
                                 <p>Descripción del producto 6. Elegante y duradero.</p>
                                 <div class="product-price">$69.99</div>
-                                <button class="btn add-to-cart">Añadir al Carrito</button>
                             </div>
                         </div>
                         
                         <!-- Producto 7 -->
-                        <div class="product-card" data-id="7" data-name="Producto 7" data-price="79.99">
+                        <div class="product-card">
                             <div class="product-image">
                                 <img src="https://via.placeholder.com/300" alt="Producto 7">
                             </div>
@@ -168,12 +142,11 @@
                                 <h3>Producto 7</h3>
                                 <p>Descripción del producto 7. Calidad premium.</p>
                                 <div class="product-price">$79.99</div>
-                                <button class="btn add-to-cart">Añadir al Carrito</button>
                             </div>
                         </div>
                         
                         <!-- Producto 8 -->
-                        <div class="product-card" data-id="8" data-name="Producto 8" data-price="89.99">
+                        <div class="product-card">
                             <div class="product-image">
                                 <img src="https://via.placeholder.com/300" alt="Producto 8">
                             </div>
@@ -181,7 +154,6 @@
                                 <h3>Producto 8</h3>
                                 <p>Descripción del producto 8. Diseño exclusivo.</p>
                                 <div class="product-price">$89.99</div>
-                                <button class="btn add-to-cart">Añadir al Carrito</button>
                             </div>
                         </div>
                     </div>
@@ -238,9 +210,6 @@
             </div>
         </div>
     </footer>
-
-    <!-- Overlay para cuando el carrito está abierto -->
-    <div class="overlay"></div>
 
     <script src="js/script.js"></script>
 </body>

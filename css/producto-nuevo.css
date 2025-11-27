@@ -1,0 +1,111 @@
+:root{
+  --primary: #4a6de5;
+  --success: #28a745;
+  --danger: #ff4d4d;
+  --muted: #666;
+  --card-bg: #ffffff;
+  --border: #e8e8ee;
+}
+
+#conteiner-producto {
+
+    background-color: #4a6de5;
+}
+
+#nuevo-producto-title{
+    text-align: center;
+    padding: 10px;
+}
+/* Contenedor del form */
+.product-form{
+  max-width: 760px;
+  margin: 28px auto;
+  background: var(--card-bg);
+  padding: 22px;
+  border-radius: 10px;
+  border: 1px solid var(--border);
+  box-shadow: 0 6px 20px rgba(34,41,47,0.04);
+  font-family: Arial, sans-serif;
+}
+
+/* Grupos de campo */
+.product-form .form-group,
+.product-form label{
+  display: block;
+  margin-bottom: 8px;
+}
+
+.product-form label{
+  font-weight: 600;
+  color: #333;
+  font-size: 14px;
+  text-align: left;
+}
+
+/* Inputs y textarea */
+.product-form input[type="text"],
+.product-form input[type="number"],
+.product-form input[type="file"],
+.product-form textarea{
+  width: 100%;
+  padding: 10px 12px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  font-size: 14px;
+  background: #fff;
+}
+
+.product-form textarea{
+  min-height: 86px;
+  resize: vertical;
+}
+
+/* Botones */
+.product-form .btn {
+  display: inline-block;
+  padding: 11px 18px;
+  border-radius: 8px;
+  border: none;
+  cursor: pointer;
+  font-weight: 700;
+  background: var(--primary);
+  color: white;
+  transition: transform .08s ease, box-shadow .12s ease;
+}
+
+.product-form .btn:hover { transform: translateY(-1px); box-shadow: 0 6px 18px rgba(74,109,229,0.12); }
+
+/* Mensajes */
+.product-form .error-message { color: var(--danger); font-weight: 700; margin-top: 12px; text-align:center; }
+.product-form .success-message { color: var(--success); font-weight: 700; margin-top: 12px; text-align:center; }
+
+/* Vista previa de imagen */
+.image-preview{
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  margin-top: 10px;
+  padding: 10px;
+  border-radius: 8px;
+  background: #fafafa;
+  border: 1px solid #f0f0f4;
+}
+
+.image-preview img{
+  width: 120px;
+  height: 120px;
+  object-fit: cover;
+  border-radius: 6px;
+  border: 1px solid #eee;
+  box-shadow: 0 6px 18px rgba(0,0,0,0.04);
+}
+
+.preview-info { font-size: 13px; color: var(--muted); }
+.preview-info small { display: block; color: #999; margin-top:6px; }
+
+/* Layout responsivo */
+@media (max-width: 600px){
+  .product-form{ padding: 16px; }
+  .image-preview{ flex-direction: row; gap: 10px; }
+  .image-preview img{ width: 90px; height: 90px; }
+}

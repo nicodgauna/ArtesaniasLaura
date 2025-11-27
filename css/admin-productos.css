@@ -1,0 +1,60 @@
+.tabla-productos {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
+  background: #fff;
+  border: 1px solid #eee;
+  border-radius: 10px;
+  overflow: hidden;
+  font-size: 14px;
+}
+
+.tabla-productos th,
+.tabla-productos td {
+  padding: 12px;
+  text-align: center;
+  border-bottom: 1px solid #f0f0f0;
+}
+
+.tabla-productos th {
+  background: #f9fafb;
+  font-weight: 700;
+  color: #333;
+}
+
+.tabla-productos tr:hover {
+  background: #fafafa;
+}
+
+.tabla-productos .thumb {
+  width: 60px;
+  height: 60px;
+  object-fit: cover;
+  border-radius: 6px;
+}
+
+.btn {
+  display: inline-block;
+  padding: 6px 12px;
+  margin: 2px;
+  border-radius: 6px;
+  border: none;
+  font-size: 13px;
+  cursor: pointer;
+  text-decoration: none;
+  transition: background .2s;
+}
+
+.btn-sm { font-size: 12px; padding: 5px 10px; }
+
+.btn-primary {
+  background: #4a6de5;
+  color: #fff;
+}
+.btn-primary:hover { background: #3d5ac4; }
+
+.btn-danger {
+  background: #ff4d4d;
+  color: #fff;
+}
+.btn-danger:hover { background: #e03b3b; }

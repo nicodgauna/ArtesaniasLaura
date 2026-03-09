@@ -80,8 +80,8 @@ img {
 }
 
 .logo img {
-    height: 50px;
-    margin-right: 10px;
+    width: 220px;
+    height: auto;
 }
 
 .nav-menu {
@@ -97,6 +97,8 @@ img {
 .nav-menu a {
     padding: 10px;
     font-weight: 500;
+    font-family: 'Great Vibes', cursive;
+    font-size: 35px;
 }
 
 .nav-menu a:hover {
@@ -288,7 +290,7 @@ img {
 /* Hero Section */
 .hero {
     height: 500px;
-    background-image: url('https://via.placeholder.com/1920x500');
+    background-image: url('../IMAGENES/FONDO-INDEX.jpg');
     background-size: cover;
     background-position: center;
     position: relative;
@@ -316,13 +318,15 @@ img {
 }
 
 .hero h1 {
-    font-size: 3rem;
-    margin-bottom: 20px;
+    font-size: 6rem;
+    margin-bottom: 0px;
+    font-family: 'Great Vibes', cursive;
 }
 
-.hero p {
-    font-size: 1.5rem;
+.hero h2 {
+    font-size: 3rem;
     margin-bottom: 30px;
+    font-family: 'Great Vibes', cursive;
 }
 
 /* Products Section */
@@ -330,7 +334,7 @@ img {
     padding: 60px 0;
 }
 
-.products h2 {
+.products h3 {
     text-align: center;
     font-size: 2rem;
     margin-bottom: 40px;
@@ -365,6 +369,7 @@ img {
 .product-card:hover {
     transform: translateY(-5px);
     box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+    border-color: #4a6de5;
 }
 
 .product-image {
@@ -461,6 +466,10 @@ img {
     background-color: #4a6de5;
 }
 
+.prod-btn{
+    display: flex;
+    justify-content: center;
+}
 /* Call to Action */
 .cta {
     background-color: #f5f5f5;
@@ -468,7 +477,7 @@ img {
     text-align: center;
 }
 
-.cta h2 {
+.cta h3 {
     font-size: 2rem;
     margin-bottom: 15px;
 }
@@ -477,6 +486,58 @@ img {
     font-size: 1.2rem;
     color: #666;
     margin-bottom: 30px;
+}
+
+/* Funcion de boton de Whatsapp*/
+
+.whatsapp-container{
+    position: fixed;
+    bottom: 25px;
+    right: 25px;
+    z-index: 999;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+}
+
+.whatsapp-container img{
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+    transition: transform 0.3s;
+    animation: whatsappPulse 2s infinite;
+}
+
+.whatsapp-container img:hover{
+    transform: scale(1.1);
+}
+
+.whatsapp-text{
+    background: white;
+    color: #333;
+    padding: 8px 12px;
+    border-radius: 10px;
+    font-size: 14px;
+    margin-bottom: 10px;
+    box-shadow: 0 3px 10px rgba(0,0,0,0.2);
+    font-family: Arial, sans-serif;
+}
+
+@keyframes whatsappPulse {
+
+    0%{
+        transform: scale(1);
+    }
+
+    50%{
+        transform: scale(1.08);
+    }
+
+    100%{
+        transform: scale(1);
+    }
+
 }
 
 /* Footer */
@@ -606,7 +667,16 @@ img {
         display: block;
     }
 
+    .hero {
+        height: 350px;
+        background-position: 60% center;
+    }
+
     .hero h1 {
+        font-size: 4rem;
+    }
+
+    .hero h2 {
         font-size: 2rem;
     }
 
@@ -632,4 +702,26 @@ img {
     .product-card {
         flex: 0 0 calc(100% - 20px);
     }
+
+    .hero{
+        height: 350px;
+        background-position: 60% center;
+    }
+
+    .hero h1 {
+        font-size: 4rem;
+    }
+
+    .hero h2 {
+        font-size: 2rem;
+    }
+
+    .whatsapp-container img{
+        width:55px;
+    }
+
+    .whatsapp-text{
+        font-size:12px;
+    }
+
 }

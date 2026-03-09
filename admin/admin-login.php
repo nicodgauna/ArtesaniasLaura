@@ -62,7 +62,7 @@ if ($_SERVER['REQUEST_METHOD'] = "POST"){
     <header class="header">
         <div class="container">
             <div class="logo">
-                <a href="../index.html">
+                <a href="../index.php">
                     <img src="https://via.placeholder.com/150" alt="Logo de Mi Tienda">
                     <span>Mi Tienda</span>
                 </a>
@@ -73,17 +73,12 @@ if ($_SERVER['REQUEST_METHOD'] = "POST"){
                     <i class="fas fa-bars"></i>
                 </div>
                 <ul class="nav-menu">
-                    <li><a href="index.html">Inicio</a></li>
+                    <li><a href="index.php">Inicio</a></li>
                     <li class="dropdown">
-                        <a href="productos.html">Productos <i class="fas fa-chevron-down"></i></a>
-                        <ul class="dropdown-menu">
-                            <li><a href="categoria1.html">Categoría 1</a></li>
-                            <li><a href="categoria2.html">Categoría 2</a></li>
-                            <li><a href="categoria3.html">Categoría 3</a></li>
-                        </ul>
+                        <a href="productos.php">Productos <i class="fas fa-chevron-down"></i></a>
                     </li>
-                    <li><a href="quienes-somos.html">Quiénes Somos</a></li>
-                    <li><a href="contacto.html">Contacto</a></li>
+                    <li><a href="quienes-somos.php">Quiénes Somos</a></li>
+                    <li><a href="contacto.php">Contacto</a></li>
                 </ul>
             </nav>
         </div>

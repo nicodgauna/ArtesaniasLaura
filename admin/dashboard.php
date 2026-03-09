@@ -16,7 +16,7 @@ require ("../includes/auth.php"); // Protege la página
     <header class="header">
         <div class="container">
             <div class="logo">
-                <a href="index.php">
+                <a href="dashboard.php">
                     <img src="https://via.placeholder.com/120" alt="Logo">
                     <span>Admin Panel</span>
                 </a>
@@ -27,7 +27,7 @@ require ("../includes/auth.php"); // Protege la página
                 </div>
                 <ul class="nav-menu">
                     <li><a href="admin-productos.php"><i class="fas fa-box"></i> Productos</a></li>
-                    <li><a href="ordenes.php"><i class="fas fa-shopping-cart"></i> Órdenes</a></li>
+                    <li><a href="pedidos.php"><i class="fas fa-shopping-cart"></i> Pedidos</a></li>
                     <li><a href="../includes/logout.php"><i class="fas fa-sign-out-alt"></i> Cerrar Sesión</a></li>
                 </ul>
             </nav>
@@ -37,21 +37,21 @@ require ("../includes/auth.php"); // Protege la página
     <main class="dashboard">
         <div class="container">
             <h1>Bienvenido, <?= htmlspecialchars($_SESSION['admin_nombre']) ?> 👋</h1>
-            <p>Este es tu panel de administración. Desde aquí podés gestionar productos y revisar órdenes.</p>
+            <p>Este es tu panel de administración. Desde aquí podés gestionar productos y revisar pedidos.</p>
 
             <div class="dashboard-cards">
                 <div class="card">
                     <i class="fas fa-box fa-2x"></i>
                     <h3>Productos</h3>
                     <p>Gestiona el catálogo de productos.</p>
-                    <a href="productos.php" class="btn">Ir a productos</a>
+                    <a href="admin-productos.php" class="btn">Ir a Productos</a>
                 </div>
 
                 <div class="card">
                     <i class="fas fa-shopping-cart fa-2x"></i>
-                    <h3>Órdenes</h3>
-                    <p>Revisa y actualiza el estado de las órdenes.</p>
-                    <a href="ordenes.php" class="btn">Ir a órdenes</a>
+                    <h3>Pedidos</h3>
+                    <p>Revisa y actualiza el estado de los pedidos.</p>
+                    <a href="ordenes.php" class="btn">Ir a Pedidos</a>
                 </div>
             </div>
         </div>

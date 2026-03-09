@@ -339,159 +339,6 @@ function initProductSlider() {
   })
 }
 
-function initAdminLogin() {
-  const loginForm = document.getElementById("admin-login-form")
-  const togglePassword = document.getElementById("toggle-password")
-  const passwordInput = document.getElementById("password")
-
-  // Toggle para mostrar/ocultar contraseña
-  if (togglePassword && passwordInput) {
-    togglePassword.addEventListener("click", function () {
-      const type = passwordInput.getAttribute("type") === "password" ? "text" : "password"
-      passwordInput.setAttribute("type", type)
-
-      const icon = this.querySelector("i")
-      if (type === "password") {
-        icon.classList.remove("fa-eye-slash")
-        icon.classList.add("fa-eye")
-      } else {
-        icon.classList.remove("fa-eye")
-        icon.classList.add("fa-eye-slash")
-      }
-    })
-  }
-
-  // Manejo del formulario de login
-  if (loginForm) {
-    loginForm.addEventListener("submit", (e) => {
-      e.preventDefault()
-
-      const username = document.getElementById("username").value
-      const password = document.getElementById("password").value
-      const remember = document.getElementById("remember").checked
-
-      // Validación básica
-      if (!username || !password) {
-        showMessage("Por favor, completa todos los campos", "error")
-        return
-      }
-
-      // Aquí puedes añadir la lógica para enviar los datos al servidor PHP
-      // Por ahora, simulamos una validación
-      if (username === "admin" && password === "admin123") {
-        showMessage("Login exitoso", "success")
-        // Redirigir al panel de administración
-        setTimeout(() => {
-          window.location.href = "admin-panel.html"
-        }, 1500)
-      } else {
-        showMessage("Usuario o contraseña incorrectos", "error")
-      }
-    })
-  }
-}
-
-function initProductFilters() {
-  const categoryFilter = document.getElementById("category-filter")
-  const priceFilter = document.getElementById("price-filter")
-  const sortFilter = document.getElementById("sort-filter")
-  const searchInput = document.getElementById("search-input")
-  const clearFiltersBtn = document.getElementById("clear-filters")
-
-  // Filtro por categoría
-  if (categoryFilter) {
-    categoryFilter.addEventListener("change", applyFilters)
-  }
-
-  // Filtro por precio
-  if (priceFilter) {
-    priceFilter.addEventListener("change", applyFilters)
-  }
-
-  // Ordenamiento
-  if (sortFilter) {
-    sortFilter.addEventListener("change", applyFilters)
-  }
-
-  // Búsqueda
-  if (searchInput) {
-    searchInput.addEventListener("input", debounce(applyFilters, 300))
-  }
-
-  // Limpiar filtros
-  if (clearFiltersBtn) {
-    clearFiltersBtn.addEventListener("click", () => {
-      if (categoryFilter) categoryFilter.value = ""
-      if (priceFilter) priceFilter.value = ""
-      if (sortFilter) sortFilter.value = ""
-      if (searchInput) searchInput.value = ""
-      applyFilters()
-    })
-  }
-}
-
-function applyFilters() {
-  const products = document.querySelectorAll(".product-card")
-  const categoryFilter = document.getElementById("category-filter")
-  const priceFilter = document.getElementById("price-filter")
-  const sortFilter = document.getElementById("sort-filter")
-  const searchInput = document.getElementById("search-input")
-
-  let visibleProducts = Array.from(products)
-
-  // Filtrar por categoría
-  if (categoryFilter && categoryFilter.value) {
-    visibleProducts = visibleProducts.filter((product) => product.dataset.category === categoryFilter.value)
-  }
-
-  // Filtrar por precio
-  if (priceFilter && priceFilter.value) {
-    const [min, max] = priceFilter.value.split("-").map(Number)
-    visibleProducts = visibleProducts.filter((product) => {
-      const price = Number.parseFloat(product.dataset.price)
-      return max ? price >= min && price <= max : price >= min
-    })
-  }
-
-  // Filtrar por búsqueda
-  if (searchInput && searchInput.value) {
-    const searchTerm = searchInput.value.toLowerCase()
-    visibleProducts = visibleProducts.filter((product) => product.dataset.name.toLowerCase().includes(searchTerm))
-  }
-
-  // Ordenar productos
-  if (sortFilter && sortFilter.value) {
-    visibleProducts.sort((a, b) => {
-      switch (sortFilter.value) {
-        case "price-asc":
-          return Number.parseFloat(a.dataset.price) - Number.parseFloat(b.dataset.price)
-        case "price-desc":
-          return Number.parseFloat(b.dataset.price) - Number.parseFloat(a.dataset.price)
-        case "name-asc":
-          return a.dataset.name.localeCompare(b.dataset.name)
-        case "name-desc":
-          return b.dataset.name.localeCompare(a.dataset.name)
-        default:
-          return 0
-      }
-    })
-  }
-
-  // Mostrar/ocultar productos
-  products.forEach((product) => {
-    product.style.display = "none"
-  })
-
-  visibleProducts.forEach((product) => {
-    product.style.display = "block"
-  })
-
-  // Actualizar contador de productos
-  const productCount = document.querySelector(".products-count")
-  if (productCount) {
-    productCount.textContent = `Mostrando ${visibleProducts.length} de ${products.length} productos`
-  }
-}
 
 function showMessage(message, type = "info") {
   const messageDiv = document.createElement("div")
@@ -533,7 +380,7 @@ function debounce(func, wait) {
     timeout = setTimeout(later, wait)
   }
 }
-
+/*
 function initPagination() {
   const paginationContainer = document.querySelector(".pagination")
   const productsPerPage = 12
@@ -601,3 +448,62 @@ function initPagination() {
 document.addEventListener("DOMContentLoaded", () => {
   setTimeout(initPagination, 100) // Pequeño delay para asegurar que los productos estén renderizados
 })
+*/
+// Filtros y paginacion
+        let ordenActual = "default";
+
+
+        function cargarProductos(pagina = 1){
+
+        fetch("productos.php?ajax=1&orden=" + ordenActual + "&pagina=" + pagina)
+
+        .then(res => res.text())
+
+        .then(data => {
+
+        document.getElementById("products-container").innerHTML = data;
+
+        });
+
+        }
+
+
+        document.getElementById("sort-select").addEventListener("change", function(){
+
+        ordenActual = this.value;
+
+        cargarProductos(1);
+
+        });
+
+
+        document.querySelectorAll(".pagination-number").forEach(btn => {
+
+        btn.addEventListener("click", function(){
+
+        let pagina = this.dataset.page;
+
+        cargarProductos(pagina);
+
+        });
+
+        });
+
+        document.querySelectorAll(".pagination-number").forEach(btn => {
+
+            btn.addEventListener("click", function(e){
+
+            e.preventDefault(); // evita comportamiento raro del navegador
+
+            let pagina = this.dataset.page;
+
+            cargarProductos(pagina);
+
+            window.scrollTo({
+                top: document.getElementById("products-container").offsetTop - 100,
+                behavior: "smooth"
+            });
+
+            });
+
+        });

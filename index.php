@@ -73,15 +73,17 @@
                         else {$result = $stmt->get_result();
                                 while( $resultado = $result->fetch_assoc()): ?>
                                 
-                                <div class="product-card" data-id=<?=$resultado['id']?> data-name=<?=$resultado['nombre']?> data-price=<?=$resultado['precio']?>>
-                                    <div class="product-image">
-                                        <img src=<?=$resultado['imagen_url']?> alt=<?=$resultado['descripcion']?>>
-                                    </div>
-                                    <div class="product-info">
-                                        <h3><?=$resultado['nombre']?></h3>
-                                        <p><?=$resultado['descripcion']?></p>
-                                        <div class="product-price">$<?=$resultado['precio']?></div>
-                                    </div>
+                                <div class="product-card" data-id="<?=$resultado['id']?>" data-name="<?=$resultado['nombre']?>" data-price="<?=$resultado['precio']?>">
+                                    <a href="pages/producto.php?id=<?=$resultado['id']?>">
+                                        <div class="product-image">
+                                            <img src="<?=$resultado['imagen_url']?>" alt="<?=$resultado['descripcion']?>">
+                                        </div>
+                                        <div class="product-info">
+                                            <h3><?=$resultado['nombre']?></h3>
+                                            <p><?=$resultado['descripcion']?></p>
+                                            <div class="product-price">$<?=number_format($resultado['precio'], 0, ',', '.')?></div>
+                                        </div>
+                                    </a>
                                 </div>
                         <?php endwhile;   
                                 }  

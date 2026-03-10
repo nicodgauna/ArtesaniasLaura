@@ -45,20 +45,21 @@ if(isset($_GET['ajax'])){
 
     while($producto = $result->fetch_assoc()){
 
+        $precio_formateado = number_format($producto['precio'], 0, ',', '.');
         echo '
 
         <div class="product-card">
+            <a href="producto.php?id='.$producto['id'].'">
+                <div class="product-image">
+                    <img src="../'.$producto['imagen_url'].'" alt="'.$producto['nombre'].'">
+                </div>
 
-            <div class="product-image">
-                <img src="../'.$producto['imagen_url'].'" alt="'.$producto['nombre'].'">
-            </div>
-
-            <div class="product-info">
-                <h3>'.$producto['nombre'].'</h3>
-                <p>'.$producto['descripcion'].'</p>
-                <div class="product-price">$'.$producto['precio'].'</div>
-            </div>
-
+                <div class="product-info">
+                    <h3>'.$producto['nombre'].'</h3>
+                    <p>'.$producto['descripcion'].'</p>
+                    <div class="product-price">$'.$precio_formateado.'</div>
+                </div>
+            </a>
         </div>
 
         ';
@@ -218,17 +219,17 @@ if(isset($_GET['ajax'])){
                     ?>
 
                     <div class="product-card">
+                        <a href="producto.php?id=<?=$resultado['id']?>">
+                            <div class="product-image">
+                                <img src="../<?=$resultado['imagen_url']?>" alt="<?=$resultado['nombre']?>">
+                            </div>
 
-                        <div class="product-image">
-                            <img src="../<?=$resultado['imagen_url']?>" alt="<?=$resultado['nombre']?>">
-                        </div>
-
-                        <div class="product-info">
-                            <h3><?=$resultado['nombre']?></h3>
-                            <p><?=$resultado['descripcion']?></p>
-                            <div class="product-price">$<?=$resultado['precio']?></div>
-                        </div>
-
+                            <div class="product-info">
+                                <h3><?=$resultado['nombre']?></h3>
+                                <p><?=$resultado['descripcion']?></p>
+                                <div class="product-price">$<?=number_format($resultado['precio'], 0, ',', '.')?></div>
+                            </div>
+                        </a>
                     </div>
 
                     <?php

@@ -56,6 +56,8 @@ if ($_SERVER['REQUEST_METHOD'] = "POST"){
     <link rel="stylesheet" href="../css/admin-login.css">
     <!-- Font Awesome para iconos -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&display=swap" rel="stylesheet">
+    <link rel="icon" href="../IMAGENES/LOGO1.png">
 </head>
 <body>
     <!-- Header -->
@@ -63,8 +65,7 @@ if ($_SERVER['REQUEST_METHOD'] = "POST"){
         <div class="container">
             <div class="logo">
                 <a href="../index.php">
-                    <img src="https://via.placeholder.com/150" alt="Logo de Mi Tienda">
-                    <span>Mi Tienda</span>
+                    <img src="../IMAGENES/LOGO.PNG" alt="Logo de Mi Tienda">
                 </a>
             </div>
             
@@ -73,12 +74,8 @@ if ($_SERVER['REQUEST_METHOD'] = "POST"){
                     <i class="fas fa-bars"></i>
                 </div>
                 <ul class="nav-menu">
-                    <li><a href="index.php">Inicio</a></li>
-                    <li class="dropdown">
-                        <a href="productos.php">Productos <i class="fas fa-chevron-down"></i></a>
-                    </li>
-                    <li><a href="quienes-somos.php">Quiénes Somos</a></li>
-                    <li><a href="contacto.php">Contacto</a></li>
+                    <li><a href="../index.php">Inicio</a></li>
+                    <li><a href="../pages/productos.php">Productos</a></li>
                 </ul>
             </nav>
         </div>
@@ -144,16 +141,15 @@ if ($_SERVER['REQUEST_METHOD'] = "POST"){
         <div class="container">
             <div class="footer-content">
                 <div class="footer-section">
-                    <h3>Mi Tienda</h3>
-                    <p>Ofrecemos los mejores productos con la mejor calidad para nuestros clientes.</p>
+                    <h3>Artesanias Laura</h3>
+                    <p>Ofrecemos los mejores productos con la mejor calidad para decorar tu jardin.</p>
                 </div>
                 <div class="footer-section">
                     <h3>Enlaces</h3>
                     <ul>
-                        <li><a href="index.html">Inicio</a></li>
-                        <li><a href="productos.html">Productos</a></li>
-                        <li><a href="quienes-somos.html">Quiénes Somos</a></li>
-                        <li><a href="contacto.html">Contacto</a></li>
+                        <li><a href="index.php">Inicio</a></li>
+                        <li><a href="pages/productos.php">Productos</a></li>
+                        <li><a href="https://wa.me/5491138784077?text=Hola!%20Quiero%20consultar%20por%20sus%20productos">Contacto</a></li>
                     </ul>
                 </div>
                 <div class="footer-section">
@@ -162,11 +158,12 @@ if ($_SERVER['REQUEST_METHOD'] = "POST"){
                         <a href="#"><i class="fab fa-facebook"></i></a>
                         <a href="#"><i class="fab fa-instagram"></i></a>
                         <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="https://wa.me/5491138784077?text=Hola!%20Quiero%20consultar%20por%20sus%20productos"><i class="fab fa-whatsapp"></i></a>
                     </div>
                 </div>
             </div>
             <div class="footer-bottom">
-                &copy; <span id="year"></span> Mi Tienda. Todos los derechos reservados.
+                &copy; <span id="year"></span> Artesanias Laura. Todos los derechos reservados.
             </div>
         </div>
     </footer>

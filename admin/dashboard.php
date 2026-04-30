@@ -10,15 +10,16 @@ require ("../includes/auth.php"); // Protege la página
     <title>Panel de Administración - Mi Tienda</title>
     <link rel="stylesheet" href="../css/styles.css">
     <link rel="stylesheet" href="../css/dashboard.css">
+    <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="icon" href="../IMAGENES/LOGO1.png">
 </head>
 <body>
     <header class="header">
         <div class="container">
             <div class="logo">
                 <a href="dashboard.php">
-                    <img src="https://via.placeholder.com/120" alt="Logo">
-                    <span>Admin Panel</span>
+                    <img src="../IMAGENES/LOGO.png"" alt="Logo">
                 </a>
             </div>
             <nav class="nav">
@@ -26,9 +27,8 @@ require ("../includes/auth.php"); // Protege la página
                     <i class="fas fa-bars"></i>
                 </div>
                 <ul class="nav-menu">
-                    <li><a href="admin-productos.php"><i class="fas fa-box"></i> Productos</a></li>
-                    <li><a href="pedidos.php"><i class="fas fa-shopping-cart"></i> Pedidos</a></li>
-                    <li><a href="../includes/logout.php"><i class="fas fa-sign-out-alt"></i> Cerrar Sesión</a></li>
+                    <li><a href="admin-productos.php">Productos</a></li>
+                    <li><a href="../includes/logout.php">Cerrar Sesión</a></li>
                 </ul>
             </nav>
         </div>
@@ -37,7 +37,7 @@ require ("../includes/auth.php"); // Protege la página
     <main class="dashboard">
         <div class="container">
             <h1>Bienvenido, <?= htmlspecialchars($_SESSION['admin_nombre']) ?> 👋</h1>
-            <p>Este es tu panel de administración. Desde aquí podés gestionar productos y revisar pedidos.</p>
+            <p>Este es tu panel de administración. Desde aquí podés gestionar productos.</p>
 
             <div class="dashboard-cards">
                 <div class="card">
@@ -47,12 +47,13 @@ require ("../includes/auth.php"); // Protege la página
                     <a href="admin-productos.php" class="btn">Ir a Productos</a>
                 </div>
 
+                <!-- Breadcrumb 
                 <div class="card">
                     <i class="fas fa-shopping-cart fa-2x"></i>
                     <h3>Pedidos</h3>
                     <p>Revisa y actualiza el estado de los pedidos.</p>
                     <a href="ordenes.php" class="btn">Ir a Pedidos</a>
-                </div>
+                </div>-->
             </div>
         </div>
     </main>

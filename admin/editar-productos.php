@@ -3,6 +3,15 @@ require("../includes/auth.php"); // protege la página
 require("../config/conndb.php");
 
 $mensaje = "";
+$id = $_GET['id'];
+
+$sql = "SELECT * FROM productos WHERE id = ?";
+$stmt = $conexion->prepare($sql);
+$stmt->bind_param("i", $id);
+$stmt->execute();
+
+$result = $stmt->get_result();
+$producto = $result->fetch_assoc();
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $nombre = trim($_POST['nombre']);
@@ -36,15 +45,16 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             if (move_uploaded_file($tmpName, $rutaFinal)) {
                 $imagenUrl = "uploads/" . $nuevoNombre;
 
-                // Insertar en la BD
-                $sql = "INSERT INTO productos (nombre, descripcion, precio, stock, imagen_url)
-                        VALUES (?, ?, ?, ?, ?)";
+                // Editar en la BD
+                $sql = "UPDATE productos SET nombre=?, descripcion=?, precio=?, stock=?, imagen_url=?
+                        WHERE id=?";
                 $stmt = $conexion->prepare($sql);
                 // nombre (s), descripcion (s), precio (d), stock (i), imagen (s)
-                $stmt->bind_param("ssdis", $nombre, $descripcion, $precio, $stock, $imagenUrl);
+                $stmt->bind_param("ssdisi", $nombre, $descripcion, $precio, $stock, $imagenUrl, $producto["id"]);
 
                 if ($stmt->execute()) {
-                    $mensaje = "✅ Producto guardado con éxito.";
+                    $_SESSION['mensaje'] = "✅ Producto Editado con éxito.";
+                    header("Location: admin-productos.php");
                 } else {
                     $mensaje = "❌ Error en la BD: " . $conexion->error;
                 }
@@ -62,7 +72,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Nuevo Producto - Admin</title>
+  <title>Editar Producto - Admin</title>
   <link rel="stylesheet" href="../css/styles.css">
   <link rel="stylesheet" href="../css/dashboard.css">
   <link rel="stylesheet" href="../css/producto-nuevo.css">
@@ -91,7 +101,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
   <!-- Main -->
   <main class="dashboard">
     <div class="container">
-      <h1>Agregar Nuevo Producto</h1>
+      <h1>Editar <?=$producto['nombre']?></h1>
 
       <?php if (!empty($mensaje)): ?>
         <p class="<?= strpos($mensaje, '✅') !== false ? 'success-message' : 'error-message' ?>">
@@ -102,22 +112,22 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
       <form class="product-form" action="" method="POST" enctype="multipart/form-data">
         <div class="form-group">
           <label for="nombre">Nombre:</label>
-          <input type="text" id="nombre" name="nombre" required>
+          <input type="text" id="nombre" name="nombre" value="<?=$producto['nombre']?>" required >
         </div>
 
         <div class="form-group">
           <label for="descripcion">Descripción:</label>
-          <textarea id="descripcion" name="descripcion" rows="3"></textarea>
+          <textarea id="descripcion" name="descripcion" rows="3"><?=$producto['descripcion']?></textarea>
         </div>
 
         <div class="form-group">
           <label for="precio">Precio:</label>
-          <input type="number" id="precio" step="0.01" name="precio" required>
+          <input type="number" id="precio" step="0.01" name="precio"value="<?=$producto['precio']?>" required>
         </div>
 
         <div class="form-group">
           <label for="stock">Stock:</label>
-          <input type="number" min="0" id="stock" name="stock" required>
+          <input type="number" min="0" id="stock" name="stock" value="<?=$producto['stock']?>" required>
         </div>
 
         <div class="form-group">
@@ -134,7 +144,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
           </div>
         </div>
 
-        <button type="submit" class="btn"><i class="fas fa-save"></i> Guardar Producto</button>
+        <button type="submit" class="btn"><i class="fas fa-save"></i> Guardar Edicion</button>
       </form>
 
       <p><a href="admin-productos.php">⬅ Volver a Productos</a></p>

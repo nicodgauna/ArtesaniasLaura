@@ -48,11 +48,11 @@ if(isset($_GET['ajax'])){
         echo '
 
         <div class="product-card">
-
-            <div class="product-image">
-                <img src="../'.$producto['imagen_url'].'" alt="'.$producto['nombre'].'">
-            </div>
-
+            <a href="../pages/producto.php?id='.$producto['id'].'">
+                <div class="product-image">
+                    <img src="../'.$producto['imagen_url'].'" alt="'.$producto['nombre'].'">
+                </div>
+            </a>
             <div class="product-info">
                 <h3>'.$producto['nombre'].'</h3>
                 <p>'.$producto['descripcion'].'</p>
@@ -62,6 +62,8 @@ if(isset($_GET['ajax'])){
         </div>
 
         ';
+
+        
 
     }
 
@@ -136,7 +138,7 @@ if(isset($_GET['ajax'])){
                 <ul class="nav-menu">
                     <li><a href="../index.php">Inicio</a></li>
                     <li><a href="productos.php">Productos</a></li>
-                    <li><a href="https://wa.me/5491138784077?text=Hola!%20Quiero%20consultar%20por%20sus%20productos">Contacto</a></li>
+                    <li><a href="contacto.php">Contacto</a></li>
                 </ul>
             </nav>
         </div>
@@ -155,102 +157,67 @@ if(isset($_GET['ajax'])){
     </section>
 
     <section class="filters-section">
-
         <div class="container">
-
             <div class="filters-header">
                 <h3>Filtrar Productos</h3>
             </div>
-
             <div class="filters-content">
-
                 <div class="filter-group">
-
                     <h4>Ordenar por</h4>
-
                     <select id="sort-select">
-
                         <option value="default">Por defecto</option>
                         <option value="price-low">Precio: Menor a Mayor</option>
                         <option value="price-high">Precio: Mayor a Menor</option>
                         <option value="name">Nombre A-Z</option>
-
                     </select>
-
                 </div>
-
             </div>
-
         </div>
-
     </section>
 
-
     <section class="products-grid-section">
-
         <div class="container">
-
             <div class="products-header">
-
                 <div class="results-count">
                     Mostrando <span id="results-count"><?=$total?></span> productos
                 </div>
-
             </div>
 
-
             <div id="products-container">
-
                 <div class="products-grid">
-
                     <?php
-
                         if ($total == 0){
-
                         echo "Aún no se han cargado productos.";
-
                         }
-
                         else{
-
                         while($resultado = $result->fetch_assoc()){
-
                     ?>
-
                     <div class="product-card">
-
-                        <div class="product-image">
-                            <img src="../<?=$resultado['imagen_url']?>" alt="<?=$resultado['nombre']?>">
-                        </div>
-
+                        <a href="../pages/producto.php?id=<?=$resultado['id']?>">
+                            <div class="product-image">
+                                <img src="../<?=$resultado['imagen_url']?>" alt="<?=$resultado['nombre']?>">
+                            </div>
+                        </a>
                         <div class="product-info">
                             <h3><?=$resultado['nombre']?></h3>
                             <p><?=$resultado['descripcion']?></p>
                             <div class="product-price">$<?=$resultado['precio']?></div>
                         </div>
-
                     </div>
 
                     <?php
-
                         }}
                     ?>
-
                 </div>
 
-
                 <div class="pagination">
-
                     <?php
-
                         $rango = 2;
-
                         $inicio = max(1, $pagina - $rango);
                         $fin = min($total_paginas, $pagina + $rango);
-
                         if($inicio > 1){
 
-                        echo '<button class="pagination-number" data-page="1">1</button>';
+                            echo '<button class="pagination-number" data-page="1">1</button>';
 
                         if($inicio > 2){
                         echo '<span class="pagination-dots">...</span>';
@@ -259,11 +226,8 @@ if(isset($_GET['ajax'])){
                         }
 
                         for($i = $inicio; $i <= $fin; $i++){
-
-                        $active = ($i == $pagina) ? 'active' : '';
-
-                        echo '<button class="pagination-number '.$active.'" data-page="'.$i.'">'.$i.'</button>';
-
+                            $active = ($i == $pagina) ? 'active' : '';
+                            echo '<button class="pagination-number '.$active.'" data-page="'.$i.'">'.$i.'</button>';
                         }
 
                         if($fin < $total_paginas){
@@ -271,19 +235,12 @@ if(isset($_GET['ajax'])){
                         if($fin < $total_paginas - 1){
                         echo '<span class="pagination-dots">...</span>';
                         }
-
                         echo '<button class="pagination-number" data-page="'.$total_paginas.'">'.$total_paginas.'</button>';
-
                         }
-
                     ?>
-
                 </div>
-
             </div>
-
         </div>
-
     </section>
 
 <footer class="footer">
@@ -316,57 +273,17 @@ if(isset($_GET['ajax'])){
             </div>
         </div>
     </footer>
+    <div class="whatsapp-container">
 
-    <script>
-
-        let ordenActual = "default";
-
-        function cargarProductos(pagina = 1){
-
-        fetch("productos.php?ajax=1&orden=" + ordenActual + "&pagina=" + pagina)
-
-        .then(res => res.text())
-
-        .then(data => {
-
-        document.getElementById("products-container").innerHTML = data;
-
-        });
-
-        }
-
-
-        document.getElementById("sort-select").addEventListener("change", function(){
-
-        ordenActual = this.value;
-
-        cargarProductos(1);
-
-        });
-
-
-        document.addEventListener("click", function(e){
-
-        if(e.target.classList.contains("pagination-number")){
-
-        e.preventDefault();
-
-        let pagina = e.target.dataset.page;
-
-        cargarProductos(pagina);
-
-        window.scrollTo({
-
-        top: document.getElementById("products-container").offsetTop - 100,
-        behavior: "smooth"
-
-        });
-
-        }
-
-        });
-
-    </script>
-
+        <div class="whatsapp-text">
+            Hola 👋 ¿En qué podemos ayudarte?
+        </div>
+        <a href="https://wa.me/5491138784077?text=Hola!%20Quiero%20consultar%20por%20sus%20productos" target="_blank">
+            <img src="../IMAGENES/whatsapp-logo.png" alt="WhatsApp">
+        </a>
+    </div>                                
+    <!-- Overlay para cuando el carrito está abierto -->
+    <div class="overlay"></div>
+    <script src="../js/script.js"></script>
 </body>
 </html>

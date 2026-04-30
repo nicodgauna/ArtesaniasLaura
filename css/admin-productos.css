@@ -1,6 +1,21 @@
 /* -------------------------
    TABLA DE PRODUCTOS
 -------------------------- */
+h1 {
+  text-align: center;
+}
+.success-message { 
+  color: #155724;
+  background-color: #d4edda;
+  font-weight: 700; 
+  text-align: center;
+
+  padding: 10px 20px;
+  border-radius: 6px;
+
+  width: fit-content;
+  margin: 15px auto;
+}
 
 .tabla-productos {
   width: 100%;

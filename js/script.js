@@ -450,60 +450,56 @@ document.addEventListener("DOMContentLoaded", () => {
 })
 */
 // Filtros y paginacion
-        let ordenActual = "default";
+        // Filtros y paginación
+let ordenActual = "default";
 
+function cargarProductos(pagina = 1){
 
-        function cargarProductos(pagina = 1){
+fetch("productos.php?ajax=1&orden=" + ordenActual + "&pagina=" + pagina)
 
-        fetch("productos.php?ajax=1&orden=" + ordenActual + "&pagina=" + pagina)
+.then(res => res.text())
 
-        .then(res => res.text())
+.then(data => {
 
-        .then(data => {
+document.getElementById("products-container").innerHTML = data;
 
-        document.getElementById("products-container").innerHTML = data;
+});
 
-        });
+}
 
-        }
+// Ordenar productos
+const sortSelect = document.getElementById("sort-select");
 
+if(sortSelect){
 
-        document.getElementById("sort-select").addEventListener("change", function(){
+sortSelect.addEventListener("change", function(){
 
-        ordenActual = this.value;
+ordenActual = this.value;
 
-        cargarProductos(1);
+cargarProductos(1);
 
-        });
+});
 
+}
 
-        document.querySelectorAll(".pagination-number").forEach(btn => {
+// Delegación de eventos para paginación
+document.addEventListener("click", function(e){
 
-        btn.addEventListener("click", function(){
+const btn = e.target.closest(".pagination-number");
 
-        let pagina = this.dataset.page;
+if(btn){
 
-        cargarProductos(pagina);
+e.preventDefault();
 
-        });
+let pagina = btn.dataset.page;
 
-        });
+cargarProductos(pagina);
 
-        document.querySelectorAll(".pagination-number").forEach(btn => {
+window.scrollTo({
+top: document.getElementById("products-container").offsetTop - 100,
+behavior: "smooth"
+});
 
-            btn.addEventListener("click", function(e){
+}
 
-            e.preventDefault(); // evita comportamiento raro del navegador
-
-            let pagina = this.dataset.page;
-
-            cargarProductos(pagina);
-
-            window.scrollTo({
-                top: document.getElementById("products-container").offsetTop - 100,
-                behavior: "smooth"
-            });
-
-            });
-
-        });
+});

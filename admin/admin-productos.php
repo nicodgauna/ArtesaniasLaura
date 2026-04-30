@@ -1,5 +1,7 @@
 <?php
 require("../includes/auth.php");
+
+
 ?>
 <!DOCTYPE html>
 <html lang="es">
@@ -10,6 +12,8 @@ require("../includes/auth.php");
   <link rel="stylesheet" href="../css/styles.css">
   <link rel="stylesheet" href="../css/admin-productos.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&display=swap" rel="stylesheet">
+  <link rel="icon" href="../IMAGENES/LOGO1.png">
 </head>
 <body>
  
@@ -17,8 +21,7 @@ require("../includes/auth.php");
     <div class="container">
       <div class="logo">
         <a href="dashboard.php">
-          <img src="https://via.placeholder.com/120" alt="Logo">
-          <span>Admin Panel</span>
+          <img src="../IMAGENES/LOGO.png" alt="Logo">
         </a>
       </div>
       <nav class="nav">
@@ -26,9 +29,8 @@ require("../includes/auth.php");
                     <i class="fas fa-bars"></i>
         </div>
         <ul class="nav-menu">
-          <li><a style="color: #4a6de5;" href="productos.php"><i class="fas fa-box"></i> Productos</a></li>
-          <li><a href="ordenes.php"><i class="fas fa-shopping-cart"></i> Órdenes</a></li>
-          <li><a href="../includes/logout.php"><i class="fas fa-sign-out-alt"></i> Cerrar Sesión</a></li>
+          <li><a href="admin-productos.php">Productos</a></li>
+          <li><a href="../includes/logout.php">Cerrar Sesión</a></li>
         </ul>
       </nav>
     </div>
@@ -38,7 +40,12 @@ require("../includes/auth.php");
   <main class="dashboard">
     <div class="container">
       <h1>Gestión de Productos</h1>
-
+      <?php if (isset($_SESSION['mensaje'])): ?>
+        <p class="<?= strpos($_SESSION['mensaje'], '✅') !== false ? 'success-message' : 'error-message' ?>">
+          <?= htmlspecialchars($_SESSION['mensaje']) ?>
+        </p>
+        <?php unset($_SESSION['mensaje']); ?>
+      <?php endif; ?>
       <p><a href="producto-nuevo.php" class="btn btn-primary">
         <i class="fas fa-plus"></i> Nuevo Producto
       </a></p>
@@ -55,7 +62,7 @@ require("../includes/auth.php");
             </tr>
           </thead>
           <tbody>
-            <!-- Ejemplo: reemplazalo con loop en PHP -->
+            
           <?php
             include ("../config/conndb.php")  ;
             $sql = "SELECT * from productos";
@@ -75,7 +82,7 @@ require("../includes/auth.php");
                       <td>$ <?=$resultado['precio']?></td>
                       <td><?=$resultado['stock']?></td>
                       <td>
-                      <a href="producto_editar.php?id=<?=$resultado['id']?>" class="btn btn-sm"><i class="fas fa-edit"></i> Editar</a>
+                      <a href="editar-productos.php?id=<?=$resultado['id']?>" class="btn btn-sm"><i class="fas fa-edit"></i> Editar</a>
                       <button class="btn btn-sm btn-danger" onclick="confirmarEliminar(<?=$resultado['id']?>)">
                           <i class="fas fa-trash"></i> Eliminar
                       </button>
@@ -93,7 +100,7 @@ require("../includes/auth.php");
   <footer class="footer">
     <div class="container">
       <div class="footer-bottom">
-        &copy; <span id="year"></span> Mi Tienda - Panel Admin
+        &copy; <span id="year"></span> Artesanias Laura - Panel Admin
       </div>
     </div>
   </footer>
@@ -103,7 +110,7 @@ require("../includes/auth.php");
 
     function confirmarEliminar(id) {
       if (confirm("¿Seguro que querés eliminar este producto?")) {
-        window.location.href = "producto_eliminar.php?id=" + id;
+        window.location.href = "eliminar-producto.php?id=" + id;
       }
     }
   </script>
